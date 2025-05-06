@@ -1,0 +1,120 @@
+[
+    {
+      "category": "Data Sharing",
+      "phrases": [
+        "share your information with third parties",
+        "we may sell your data",
+        "we share your personal data",
+        "third-party advertisers",
+        "disclose your personal information",
+        "sell or rent your data",
+        "may transfer your data",
+        "exchange data with affiliates",
+        "information sold to partners",
+        "we work with advertising partners",
+        "use of your data by partners"
+      ]
+    },
+    {
+      "category": "Tracking & Surveillance",
+      "phrases": [
+        "collect your browsing activity",
+        "monitor your behavior",
+        "track your location",
+        "track you across websites",
+        "collect information about how you use",
+        "gather device identifiers",
+        "analyze your usage",
+        "install cookies for tracking",
+        "behavioral profiling",
+        "device fingerprinting",
+        "cross-site tracking"
+      ]
+    },
+    {
+      "category": "Automatic Payments & Renewals",
+      "phrases": [
+        "automatically renew your subscription",
+        "charged without further notice",
+        "recurring billing",
+        "cancel anytime to avoid charges",
+        "we will bill you periodically",
+        "subscription fees may change",
+        "no refunds for partial use",
+        "non-refundable",
+        "your subscription will continue",
+        "automatic billing cycle"
+      ]
+    },
+    {
+      "category": "Data Retention",
+      "phrases": [
+        "retain your data indefinitely",
+        "store your data after account deletion",
+        "keep your information for business purposes",
+        "data may remain in backups",
+        "retain for legal purposes",
+        "your data may not be deleted immediately"
+      ]
+    },
+    {
+      "category": "Consent Assumptions",
+      "phrases": [
+        "by using this site you agree",
+        "continued use constitutes acceptance",
+        "your acceptance is implied",
+        "we assume your consent",
+        "your silence means consent",
+        "opt-out mechanism only"
+      ]
+    },
+    {
+      "category": "Changes to Terms",
+      "phrases": [
+        "we may update these terms at any time",
+        "terms may change without notice",
+        "you are responsible for reviewing changes",
+        "we reserve the right to modify",
+        "terms subject to change"
+      ]
+    },
+    {
+      "category": "Limitation of Liability",
+      "phrases": [
+        "we are not liable for",
+        "we disclaim all warranties",
+        "you agree to indemnify us",
+        "use at your own risk",
+        "we make no guarantees",
+        "no responsibility for loss"
+      ]
+    },
+    {
+      "category": "No Deletion Rights",
+      "phrases": [
+        "you cannot delete your data",
+        "data deletion not guaranteed",
+        "we may retain data for compliance",
+        "data will remain on our servers"
+      ]
+    },
+    {
+      "category": "AI/Automated Decision-Making",
+      "phrases": [
+        "decisions made using automated tools",
+        "profiling may affect your experience",
+        "AI may be used to analyze your data",
+        "automated recommendations"
+      ]
+    },
+    {
+      "category": "Government Sharing",
+      "phrases": [
+        "may disclose your data to law enforcement",
+        "cooperate with government authorities",
+        "subject to legal requests",
+        "comply with subpoenas or court orders"
+      ]
+    }
+  ]
+  
