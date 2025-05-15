@@ -61,3 +61,60 @@ body {
     color: #5bc0de;
   }
   
+
+  #result {
+    font-family: Arial, sans-serif;
+    margin-top: 20px;
+  }
+  svg {
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #progress--text {
+    font-weight: bold;
+  }
+  
+  svg {
+  margin-top: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.1));
+}
+
+#progress--circle {
+  stroke: url(#gradient);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.6s ease;
+}
+
+#progress--text {
+  font-weight: bold;
+  fill: #333;
+}
+
+circle.bg {
+  stroke: #e6e6e6;
+}
+
+#result-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.07);
+  width: 100%;
+}
+
+#short-summary li {
+  margin-bottom: 5px;
+}
+
+#toggle-details {
+  margin-top: 10px;
+  background-color: #eee;
+  color: #333;
+  border-radius: 5px;
+  padding: 6px 12px;
+}
