@@ -28,32 +28,33 @@ It provides a clean summary, highlights risks, and assigns a **final privacy ris
 
 
 
-tandc-analyzer/
-├── backend/ # Flask API + BERT classifier
-│ ├── app.py # Flask server with /classify endpoint
-│ ├── classifier.py # BERT-based clause classification logic
-│ ├── risk_score.py # Rule-based risk score computation
-│ ├── config.yaml # Risk weights and model config
-│ ├── requirements.txt # Python dependencies
-│ └── init.py
-│
-├── extension/ # Chrome extension frontend
-│ ├── popup.html # Extension popup UI
-│ ├── popup.js # UI logic and LLM/BERT integration
-│ ├── summarize.js # Gemini LLM summarizer
-│ ├── bertClient.js # Fetch BERT results from backend
-│ ├── riskScore.js # Rule-based keyword fallback scorer
-│ ├── content.js # Extracts page text from browser
-│ ├── background.js # Service worker logic
-│ ├── manifest.json # Chrome extension manifest (V3)
-│ ├── style.css # Popup UI styling
-│ ├── flaggedPhrases.json # Keyword list for fallback scoring
-│ └── icons/ # Extension icon assets
-│ ├── icon16.png
-│ ├── icon48.png
-│ └── icon128.png
-│
-└── README.md # Project documentation
+## 📁 Folder Structure
+
+| Path | Description |
+|------|-------------|
+| `backend/` | Python Flask backend for BERT |
+| ├── `app.py` | Flask app with `/classify` endpoint |
+| ├── `classifier.py` | Runs clause classification with BERT |
+| ├── `risk_score.py` | Computes risk score from labels |
+| ├── `config.yaml` | Scoring config and model info |
+| └── `requirements.txt` | Backend dependencies |
+| `extension/` | Chrome extension frontend |
+| ├── `popup.html` | Popup layout UI |
+| ├── `popup.js` | Core logic for Gemini + BERT |
+| ├── `summarize.js` | Gemini LLM API helper |
+| ├── `bertClient.js` | Sends data to BERT Flask backend |
+| ├── `riskScore.js` | Keyword fallback scorer |
+| ├── `content.js` | Scrapes visible text |
+| ├── `background.js` | Manifest V3 background script |
+| ├── `manifest.json` | Chrome extension config |
+| ├── `style.css` | CSS styling |
+| ├── `flaggedPhrases.json` | Risky keywords for backup scoring |
+| └── `icons/` | Extension icons |
+| &nbsp;&nbsp;&nbsp;&nbsp;├── `icon16.png` | 16px icon |
+| &nbsp;&nbsp;&nbsp;&nbsp;├── `icon48.png` | 48px icon |
+| &nbsp;&nbsp;&nbsp;&nbsp;└── `icon128.png` | 128px icon |
+| `README.md` | This file |
+
 
 ---
 
