@@ -1,0 +1,23 @@
+# config.yaml
+
+model:
+  name: bhadresh-savani/bert-base-uncased-emotion
+  confidence_threshold: 0.5
+
+risk_weights:
+  data_sharing: 2
+  ads: 2
+  third_party_services: 2
+  auto_renewal: 2
+  arbitration: 1
+  account_deletion_restriction: 1
+  location_tracking: 2
+  biometrics: 2
+  no_opt_out: 2
+  children_privacy: 1
+  limited_liability: 1
+  user_content_rights: 1
+  gdpr_compliance: -2
+  data_deletion_policy: -1
+
+max_score: 10
