@@ -28,7 +28,7 @@ It provides a clean summary, highlights risks, and assigns a **final privacy ris
 
 
 
-## 📁 Folder Structure
+
 
 | Path | Description |
 |------|-------------|
