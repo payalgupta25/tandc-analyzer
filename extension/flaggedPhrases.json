@@ -1,0 +1,14 @@
+[
+  { "phrase": "we may share your data", "weight": 2 },
+  { "phrase": "third party advertisers", "weight": 2 },
+  { "phrase": "arbitration clause", "weight": 1 },
+  { "phrase": "location data", "weight": 2 },
+  { "phrase": "we collect biometric", "weight": 2 },
+  { "phrase": "you waive your right", "weight": 1 },
+  { "phrase": "data may be retained indefinitely", "weight": 2 },
+  { "phrase": "opt-out is not provided", "weight": 2 },
+  { "phrase": "we may monitor", "weight": 1 },
+  { "phrase": "your content can be reused", "weight": 1 },
+  { "phrase": "limited liability", "weight": 1 },
+  { "phrase": "your account may be suspended", "weight": 1 }
+]
