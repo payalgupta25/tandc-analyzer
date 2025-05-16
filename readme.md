@@ -29,33 +29,31 @@ It provides a clean summary, highlights risks, and assigns a **final privacy ris
 
 
 tandc-analyzer/
-├── backend/                 # Flask API + BERT classifier
-│   ├── app.py
-│   ├── classifier.py
-│   ├── config.yaml
-│   ├── risk\_score.py
-│   ├── requirements.txt
-│   └── **init**.py
+├── backend/ # Flask API + BERT classifier
+│ ├── app.py # Flask server with /classify endpoint
+│ ├── classifier.py # BERT-based clause classification logic
+│ ├── risk_score.py # Rule-based risk score computation
+│ ├── config.yaml # Risk weights and model config
+│ ├── requirements.txt # Python dependencies
+│ └── init.py
 │
-├── extension/               # Chrome extension (frontend)
-│   ├── popup.html
-│   ├── popup.js
-│   ├── summarize.js
-│   ├── bertClient.js
-│   ├── riskScore.js
-│   ├── background.js
-│   ├── content.js
-│   ├── manifest.json
-│   ├── style.css
-│   ├── flaggedPhrases.json
-│   └── icons/
-│       ├── icon16.png
-│       ├── icon48.png
-│       └── icon128.png
+├── extension/ # Chrome extension frontend
+│ ├── popup.html # Extension popup UI
+│ ├── popup.js # UI logic and LLM/BERT integration
+│ ├── summarize.js # Gemini LLM summarizer
+│ ├── bertClient.js # Fetch BERT results from backend
+│ ├── riskScore.js # Rule-based keyword fallback scorer
+│ ├── content.js # Extracts page text from browser
+│ ├── background.js # Service worker logic
+│ ├── manifest.json # Chrome extension manifest (V3)
+│ ├── style.css # Popup UI styling
+│ ├── flaggedPhrases.json # Keyword list for fallback scoring
+│ └── icons/ # Extension icon assets
+│ ├── icon16.png
+│ ├── icon48.png
+│ └── icon128.png
 │
-└── README.md
-
-
+└── README.md # Project documentation
 
 ---
 
