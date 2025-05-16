@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Analyzer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>🔍 T&C Privacy Analyzer</h2>
+  
+  <button id="analyzeBtn">Analyze This Page</button>
+
+  <div id="loading" style="display:none;">⏳ Analyzing... Please wait.</div>
+
+  <div id="results" style="display:none;">
+    <svg width="120" height="120">
+      <defs>
+        <linearGradient id="gradient" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#00c6ff"/>
+          <stop offset="100%" stop-color="#0072ff"/>
+        </linearGradient>
+      </defs>
+      <circle class="bg" cx="60" cy="60" r="50" stroke-width="10" fill="none"/>
+      <circle id="progress--circle" cx="60" cy="60" r="50" stroke-width="10" fill="none" stroke-dasharray="314" stroke-dashoffset="314"/>
+      <text id="progress--text" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="20">0%</text>
+    </svg>
+
+    <div id="score-label"></div>
+
+    <div id="summary-card">
+      <h4>⚠️ Gemini Summary</h4>
+      <ul id="gemini-summary"></ul>
+
+      <h4>📌 BERT Risk Findings</h4>
+      <ul id="bert-summary"></ul>
+
+      <button id="toggle-details">📖 View Full Details</button>
+
+      <div id="detailed-summary" style="display:none;">
+        <h4>📝 Full Highlights</h4>
+        <ul id="gemini-detailed"></ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="error" style="display:none;"></div>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
