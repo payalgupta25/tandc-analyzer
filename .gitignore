@@ -31,3 +31,4 @@ dist-ssr
 **/.venv
 **/.venv/
 .venv*
+backend/venv/
