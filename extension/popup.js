@@ -1,7 +1,7 @@
-import { classifyWithBERT } from "extension\\bertClient.js";
-import { getRuleBasedScore } from "extension\\riskScore.js";
-import { callGeminiAnalysis } from "extension\\summarize.js";
-import flaggedPhrases from "./flaggedPhrases.json" assert { type: "json" };
+import { classifyWithBERT } from "/bertClient.js";
+import { getRuleBasedScore } from "/riskScore.js";
+import { callGeminiAnalysis } from "/summarize.js";
+// import flaggedPhrases from "./flaggedPhrases.json" assert { type: "json" };
 
 document.getElementById("analyzeBtn").addEventListener("click", async () => {
   const loading = document.getElementById("loading");
@@ -30,7 +30,9 @@ document.getElementById("analyzeBtn").addEventListener("click", async () => {
 
       // 🛡️ 3. Optional rule-based backup
       const fallbackScore = getRuleBasedScore(text);
-
+      console.log(bert);
+      console.log(gemini);
+      console.log(fallbackScore);
       // 🧠 4. Final risk score logic
       const scoreText = bert?.risk_score || gemini?.risk_score || fallbackScore || "0/10";
       const score = parseInt(scoreText.split("/")[0]) || 0;

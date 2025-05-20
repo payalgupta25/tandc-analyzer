@@ -1,6 +1,6 @@
 export async function classifyWithBERT(text) {
   try {
-    const res = await fetch("http://localhost:5000/classify", {
+    const res = await fetch("http://127.0.0.1:5000/classify", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text }),

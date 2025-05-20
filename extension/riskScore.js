@@ -1,6 +1,11 @@
-import flaggedPhrases from './flaggedPhrases.json' assert { type: 'json' };
+let flaggedPhrases = [];
 
-export function getRuleBasedScore(text) {
+export async function getRuleBasedScore(text) {
+  if (flaggedPhrases.length === 0) {
+    const res = await fetch(chrome.runtime.getURL("flaggedPhrases.json"));
+    flaggedPhrases = await res.json();
+  }
+
   let score = 0;
   text = text.toLowerCase();
 
@@ -12,3 +17,4 @@ export function getRuleBasedScore(text) {
 
   return `${Math.min(score, 10)}/10`;
 }
+
