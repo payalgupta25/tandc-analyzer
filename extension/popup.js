@@ -1,7 +1,16 @@
+<<<<<<< HEAD
 import { classifyWithBERT } from "/bertClient.js";
 import { getRuleBasedScore } from "/riskScore.js";
 import { callGeminiAnalysis } from "/summarize.js";
 // import flaggedPhrases from "./flaggedPhrases.json" assert { type: "json" };
+=======
+import { classifyWithBERT } from "./bertClient.js";
+import { getRuleBasedScore } from "./riskScore.js";
+import { callGeminiAnalysis } from "./summarize.js";
+import flaggedPhrases from "./flaggedPhrases.json" assert { type: "json" };
+>>>>>>> f160765ff7957f6549cc3472ac067cef6e4f5867
+
+console.log("✅ Popup script loaded");
 
 document.getElementById("analyzeBtn").addEventListener("click", async () => {
   const loading = document.getElementById("loading");
@@ -15,33 +24,70 @@ document.getElementById("analyzeBtn").addEventListener("click", async () => {
   try {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-    chrome.tabs.sendMessage(tab.id, { action: "getPageText" }, async (response) => {
-      const text = response?.text;
+    if (!tab || !tab.id) {
+      throw new Error("❌ No active tab found.");
+    }
 
-      if (!text || text.length < 100) {
-        throw new Error("No meaningful content found.");
+    chrome.tabs.sendMessage(tab.id, { action: "getPageText" }, async (response) => {
+      if (chrome.runtime.lastError) {
+        console.error("❌ Content script error:", chrome.runtime.lastError.message);
+        error.innerText = `❌ Could not access this page.`;
+        loading.style.display = "none";
+        error.style.display = "block";
+        return;
       }
 
-      // 🔍 1. Gemini LLM summary
-      const gemini = await callGeminiAnalysis(text);
+      const text = response?.text;
+      if (!text || text.length < 100) {
+        throw new Error("❌ No meaningful content found on the page.");
+      }
 
-      // 🤖 2. BERT classification
-      const bert = await classifyWithBERT(text);
+      console.log("📝 Extracted text length:", text.length);
 
-      // 🛡️ 3. Optional rule-based backup
+      // 🔍 Gemini summarization
+      let gemini = { short_summary: [], detailed_summary: [], risk_score: null };
+      try {
+        gemini = await callGeminiAnalysis(text);
+        console.log("🤖 Gemini summary:", gemini);
+      } catch (err) {
+        console.warn("⚠️ Gemini failed:", err);
+      }
+
+      // 🧠 BERT classification
+      let bert = { top_clauses: [], risk_score: null };
+      try {
+        bert = await classifyWithBERT(text);
+        console.log("🔬 BERT result:", bert);
+      } catch (err) {
+        console.warn("⚠️ BERT failed:", err);
+      }
+
+      // 🛡️ Rule-based fallback
       const fallbackScore = getRuleBasedScore(text);
+<<<<<<< HEAD
       console.log(bert);
       console.log(gemini);
       console.log(fallbackScore);
       // 🧠 4. Final risk score logic
+=======
+      console.log("🛡️ Rule-based score:", fallbackScore);
+
+      // 🧠 Final score
+>>>>>>> f160765ff7957f6549cc3472ac067cef6e4f5867
       const scoreText = bert?.risk_score || gemini?.risk_score || fallbackScore || "0/10";
       const score = parseInt(scoreText.split("/")[0]) || 0;
       updateProgressCircle(score);
 
-      // 🧾 5. Display output
-      document.getElementById("gemini-summary").innerHTML = gemini.short_summary.map(p => `<li>${p}</li>`).join('');
-      document.getElementById("bert-summary").innerHTML = bert.top_clauses.map(p => `<li>${p}</li>`).join('');
-      document.getElementById("gemini-detailed").innerHTML = gemini.detailed_summary.map(p => `<li>${p}</li>`).join('');
+      // 🎯 Update UI
+      document.getElementById("gemini-summary").innerHTML =
+        gemini.short_summary.map(p => `<li>${p}</li>`).join('') || "<li>No summary</li>";
+
+      document.getElementById("bert-summary").innerHTML =
+        bert.top_clauses.map(p => `<li>${p}</li>`).join('') || "<li>No BERT results</li>";
+
+      document.getElementById("gemini-detailed").innerHTML =
+        gemini.detailed_summary.map(p => `<li>${p}</li>`).join('') || "<li>No details available</li>";
+
       document.getElementById("score-label").innerText = `🧠 Final Risk Score: ${score}/10`;
 
       document.getElementById("toggle-details").onclick = () => {
@@ -53,14 +99,14 @@ document.getElementById("analyzeBtn").addEventListener("click", async () => {
       results.style.display = "block";
     });
   } catch (err) {
-    console.error("❌", err);
-    error.style.display = "block";
-    error.innerText = `❌ ${err.message}`;
+    console.error("❌ Popup error:", err);
+    error.innerText = err.message;
     loading.style.display = "none";
+    error.style.display = "block";
   }
 });
 
-// --- Circle progress animation ---
+// 🎯 Visual ring update
 function updateProgressCircle(score) {
   const percent = Math.min(score * 10, 100);
   const r = 50;

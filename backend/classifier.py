@@ -1,32 +1,33 @@
-from transformers import pipeline, AutoTokenizer, AutoModelForSequenceClassification
-import torch
+from transformers import pipeline
 
-# -------------------------
-# MODEL CONFIG
-# -------------------------
-MODEL_NAME = "bhadresh-savani/bert-base-uncased-emotion"  # temporary multi-label model
-# You can replace this with a fine-tuned LegalBERT later
+# Load zero-shot classification model
+classifier = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
 
-# -------------------------
-# LOAD MODEL ONCE
-# -------------------------
-print("🔍 Loading model...")
-tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
-model = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME)
-classifier = pipeline("text-classification", model=model, tokenizer=tokenizer, return_all_scores=True)
+# Define clause categories relevant to T&C risk
+LABELS = [
+    "data_sharing",
+    "ads",
+    "third_party_services",
+    "auto_renewal",
+    "arbitration",
+    "account_deletion_restriction",
+    "location_tracking",
+    "biometrics",
+    "no_opt_out",
+    "user_content_rights",
+    "gdpr_compliance",
+    "data_deletion_policy"
+]
 
-# -------------------------
-# CLAUSE CLASSIFICATION
-# -------------------------
-def classify_clauses(clauses, threshold=0.5):
-    results = []
-    
+def classify_clauses(clauses, threshold=0.7):
+    predicted_labels = []
+
     for clause in clauses:
-        output = classifier(clause)[0]  # multi-class scores
-        top = max(output, key=lambda x: x['score'])
-        
-        if top['score'] >= threshold:
-            label = top['label'].lower().strip().replace(" ", "_")
-            results.append(label)
-    
-    return results
+        result = classifier(clause, LABELS, multi_label=True)
+
+        # Add labels with confidence ≥ threshold
+        for label, score in zip(result["labels"], result["scores"]):
+            if score >= threshold:
+                predicted_labels.append(label)
+
+    return predicted_labels
