@@ -32,3 +32,8 @@ dist-ssr
 **/.venv/
 .venv*
 backend/venv/
+# Ignore ALL venv folders
+venv/
+.venv/
+**/venv/
+**/.venv/
