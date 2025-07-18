@@ -8,19 +8,14 @@ with open("config.yaml", "r") as f:
 LABELS = config.get("labels", [])
 THRESHOLD = config.get("threshold", 0.7)
 
-# Load zero-shot classifier
-classifier = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
-
+# Use a smaller, faster zero-shot model
+classifier = pipeline("zero-shot-classification", model="typeform/distilbert-base-uncased-mnli", device=0)
 def classify_clauses(clauses, threshold=THRESHOLD):
+    # Batch process all clauses at once for speed
+    results = classifier(clauses, LABELS, multi_label=True)
     predicted_labels = []
-
-    for clause in clauses:
-        print("\n[CLAUSE]", clause)
-        result = classifier(clause, LABELS, multi_label=True)
-
+    for result in results:
         for label, score in zip(result["labels"], result["scores"]):
-            print(f"  [SCORE] {label}: {score:.3f}")
             if score >= threshold:
                 predicted_labels.append(label)
-
     return predicted_labels

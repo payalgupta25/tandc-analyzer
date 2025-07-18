@@ -52,4 +52,5 @@ def compute_risk_score(predicted_labels):
 
     top_clauses = [label_to_text[label] for label in counted_labels if label in label_to_text]
 
+    print(f"Computed risk score: {score}")
     return score, top_clauses
